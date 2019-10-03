@@ -1,0 +1,142 @@
+#include<iostream>
+using namespace std;
+int fishspot[100];
+int gate[3];
+int fisherman[3];
+int visit[3];
+int result;
+
+void reset_fishspot(int index,int n){
+	for(int i=1;i<=n;i++)
+		if(fishspot[i]==index)
+			fishspot[i]=-1;
+}
+
+int find(int index,int n,int &pos1,int &pos2,int &value){
+	int sum1=0,l_m=99999,r_m=99999,left,right;
+	left=right=gate[index];
+	for(int i=1;i<fisherman[index];i++){
+		if(fishspot[gate[index]]==-1){
+			sum1++;
+			fishspot[gate[index]]=index;
+		}
+		else{
+			l_m=r_m=99999;
+			while(left>=1 && fishspot[left]!=-1)left--;
+			while(right<=n && fishspot[right]!=-1)right++;
+			if(left>=1 && fishspot[left]==-1)l_m=gate[index]-left+1;
+			if(right<=n && fishspot[right]==-1)r_m=right-gate[index]+1;
+			if(l_m==r_m && l_m!=99999){
+				if(fisherman[index]-i-1>1){
+					sum1+=(2*l_m);
+					fishspot[left]=index;
+					fishspot[right]=index;
+					i++;
+					if(i==fisherman[index]){
+						value=sum1;
+						return 1;
+					}
+				}
+				else{
+					sum1+=l_m;
+					fishspot[left]=index;
+				}
+			}
+			else if(l_m<r_m){
+				sum1+=l_m;
+				fishspot[left]=index;
+			}
+			else if(r_m<l_m){
+				sum1+=r_m;
+				fishspot[right]=index;
+			}
+		}
+	}
+	l_m=r_m=99999;
+	while(left>=1 && fishspot[left]!=-1)left--;
+	while(right<=n && fishspot[right]!=-1)right++;
+	if(left>=1 && fishspot[left]==-1 && fisherman[index]!=0)l_m=gate[index]-left+1;
+	if(right<=n && fishspot[right]==-1 && fisherman[index]!=0)r_m=right-gate[index]+1;
+	if(((sum1+l_m)==(sum1+r_m)) && l_m!=99999){
+		pos1=left;
+		pos2=right;
+		value=sum1+l_m;
+		return 2;
+	}
+	else if((sum1+l_m)<(sum1+r_m)){
+		value=sum1+l_m;
+		fishspot[left]=index;
+	}
+	else if((sum1+l_m)>(sum1+r_m)){
+		value=sum1+r_m;
+		fishspot[right]=index;
+	}
+	return 1;
+}
+
+void calculate_distance(int index,int n,int sum,int count){
+	if(sum>=result)return;
+	int pos1=0,pos2=0,value=0;
+	int res=find(index,n,pos1,pos2,value);
+	sum+=value;
+	if(count==3){
+		if(sum<result)result=sum;
+		return;
+	}
+	if(res==1){
+		for(int i=0;i<3;i++){
+			if(!visit[i]){
+				visit[i]=1;
+				calculate_distance(i,n,sum,count+1);
+				reset_fishspot(i,n);
+				visit[i]=0;
+			}
+		}
+	}
+	else if(res==2){
+		fishspot[pos1]=index;
+		for(int i=0;i<3;i++){
+			if(!visit[i]){
+				visit[i]=1;
+				calculate_distance(i,n,sum,count+1);
+				reset_fishspot(i,n);
+				visit[i]=0;
+			}
+		}
+		fishspot[pos1]=-1;
+		fishspot[pos2]=index;
+		for(int i=0;i<3;i++){
+			if(!visit[i]){
+				visit[i]=1;
+				calculate_distance(i,n,sum,count+1);
+				reset_fishspot(i,n);
+				visit[i]=0;
+			}
+		}
+		fishspot[pos2]=-1;
+	}
+}
+
+int main(){
+	int test;
+	cin>>test;
+	for(int t=1;t<=test;t++){
+		int n;
+		cin>>n;
+		for(int i=0;i<3;i++)cin>>gate[i];
+		for(int i=0;i<3;i++)cin>>fisherman[i];
+		for(int i=1;i<=n;i++)fishspot[i]=-1;
+		for(int i=0;i<3;i++)visit[i]=0;
+		result=99999;
+		for(int i=0;i<3;i++){
+			if(!visit[i]){
+				visit[i]=1;
+				calculate_distance(i,n,0,1);
+				reset_fishspot(i,n);
+				visit[i]=0;
+			}
+		}
+		cout<<"#"<<t<<" "<<result<<endl;
+	}
+	return 0;
+}

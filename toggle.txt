@@ -1,0 +1,83 @@
+#include<iostream>
+using namespace std;
+int a[100][100];
+int matrix[100][100];
+int dp[100];
+int start1;
+
+void check(int index,int m){
+	int flag1=true;
+	for(int i=0;i<start1;i++){
+		int flag=true;
+		for(int j=0;j<m;j++){
+			if(a[index][j]!=matrix[i][j]){
+				flag=false;
+				break;
+			}
+		}
+		if(flag){
+			dp[i]++;
+			flag1=false;
+			break;
+		}
+	}
+	if(flag1){
+		for(int j=0;j<m;j++)matrix[start1][j]=a[index][j];
+		dp[start1]++;
+		start1++;
+	}
+
+}
+
+// void print(int m){
+// 	cout<<"matrix :"<<endl;
+// 	for(int i=0;i<start1;i++){
+// 		for(int j=0;j<m;j++)cout<<matrix[i][j]<<" ";
+// 		cout<<endl;
+// 	}
+// 	cout<<"distance :"<<endl;
+// 	for(int i=0;i<start1;i++)cout<<i<<"="<<dp[i]<<endl;
+// }
+
+int find_max_element(){
+	int t=0,m=-1;
+	for(int i=0;i<start1;i++){
+		if(dp[i]>t){
+			t=dp[i];
+			m=i;
+		}
+	}
+	return m;
+}
+
+int find_max_rows(int m,int k){
+	for(int i=0;i<start1;i++){
+		int c=find_max_element();
+		if(c!=-1){
+			int count=0;
+			for(int j=0;j<m;j++)if(matrix[c][j]==0)count++;
+			if((k%2==0 && count%2==0 && k>=count) || (k%2!=0 && count%2!=0 && k>=count))
+				return dp[c];
+			else dp[c]=0;
+		}
+	}
+	return 0;
+}
+
+int main(){
+	int test;
+	cin>>test;
+	while(test--){
+		int n,m,k;
+		cin>>n>>m>>k;
+		for(int i=0;i<n;i++)for(int j=0;j<m;j++)cin>>a[i][j];
+		start1=0;
+		for(int i=0;i<n;i++)dp[i]=0;
+		for(int i=0;i<n;i++)check(i,m);
+		int t=find_max_rows(m,k);
+		cout<<t<<endl;
+	}
+	return 0;
+}
+
+

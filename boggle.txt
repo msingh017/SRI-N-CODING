@@ -1,0 +1,62 @@
+#include<iostream>
+using namespace std;
+int a[100][100];
+int visit[100][100];
+int binary_array[100];
+int x_move[]={-1,0,1,0};
+int y_move[]={0,1,0,-1};
+int index;
+int ans;
+
+void fill_binary_array(int k){
+	index=0;
+	if(k==0)binary_array[index++]=k;
+	while(k!=0){
+		binary_array[index++]=k%2;
+		k/=2;
+	}
+}
+bool check(int n,int x,int y,int count){
+	if(x<0 || y<0 || x>=n || y>=n || visit[x][y]==1 || (binary_array[count-1]!=a[x][y]))
+		return false;
+	return true;
+}
+void calculate_dfs(int n,int sx,int sy,int count){
+	if(count<=0){
+		ans++;
+		return;
+	}
+	for(int i=0;i<4;i++){
+		int new_x=sx+x_move[i];
+		int new_y=sy+y_move[i];
+		if(check(n,new_x,new_y,count)){
+			visit[new_x][new_y]=1;
+			calculate_dfs(n,new_x,new_y,count-1);
+			visit[new_x][new_y]=0;
+		}
+	}
+}
+int main(){
+	int test;
+	cin>>test;
+	for(int t=1;t<=test;t++){
+		int n,k;
+		cin>>n>>k;
+		for(int i=0;i<n;i++)for(int j=0;j<n;j++)cin>>a[i][j];
+		for(int i=0;i<n;i++)for(int j=0;j<n;j++)visit[i][j]=0;
+		fill_binary_array(k);
+		ans=0;
+		for(int i=0;i<n;i++){
+			for(int j=0;j<n;j++){
+				int count=index;
+				if(!visit[i][j] && binary_array[count-1]==a[i][j]){
+					visit[i][j]=1;
+					calculate_dfs(n,i,j,count-1);
+					visit[i][j]=0;
+				}
+			}
+		}
+		cout<<"#"<<t<<" "<<ans<<endl;
+	}
+	return 0;
+}

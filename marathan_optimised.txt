@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+#define ll long long int
+ll v[2][5];
+
+ll solve(ll h,ll d){
+	ll ans=100000;
+	for(int i1=0;i1<=d;i1++){
+		for(int i2=0;i2<=(d-i1);i2++){
+			for(int i3=0;i3<=(d-i1-i2);i3++){
+				for(int i4=0;i4<=(d-i1-i2-i3);i4++){
+					if(i1+i2+i3+i4<=d){
+						int i5=(d-i1-i2-i3-i4);
+						ll nd=i1*v[1][0]+i2*v[1][1]+i3*v[1][2]+i4*v[1][3]+i5*v[1][4];
+						ll nans=i1*v[0][0]+i2*v[0][1]+i3*v[0][2]+i4*v[0][3]+i5*v[0][4];
+						if(nd<=h)ans=min(ans,nans);
+					}
+				}
+			}
+		}
+	}
+	return ans;
+}
+
+int main(){
+	int t;
+	cin>>t;
+	for(int i=0;i<t;i++){
+		ll h,d;
+		cin>>h>>d;
+		ll m,s,item;
+		for(int j=0;j<5;j++){
+			cin>>m>>s>>item;
+			v[0][j]=(m*60+s);
+			v[1][j]=item;
+		}
+		ll sec=solve(h,d);
+		ll minute=sec/60;
+		ll second=sec%60;
+		cout<<"#"<<i+1<<" "<<minute<<" "<<second<<endl;
+	}
+	return 0;
+}
