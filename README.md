@@ -252,7 +252,7 @@ For example with 3 elements 1,2,3, there are 5 possible BST and for 1,2,3,4 ther
     When locations of a maze and jewels are given,
   find out the greatest number of jewels you can get without taking the same passage twice, and the path taken in this case.
 
-   ![](https://github.com/msingh017/SRI-N-CODING/raw/master/res/jewel.png)
+ ![](https://github.com/msingh017/SRI-N-CODING/raw/master/res/jewel.png )
    
    
    #### Input
