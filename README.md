@@ -26,7 +26,7 @@ ____
 
    | S.No | Pipe           | Connected to  |
    | -----|:-------------: | -------------:|
-   | 1    | ![](https://github.com/msingh017/SRI-N-CODING/tree/master/res/1.png ) | Up, Down, Left, Right |
+   | 1    | ![](https://github.com/msingh017/SRI-N-CODING/raw/master/res/1.png ) | Up, Down, Left, Right |
    | 2    | ![](https://github.com/msingh017/SRI-N-CODING/tree/master/res/2.png ) | Up, Down              |
    | 3    | ![](https://github.com/msingh017/SRI-N-CODING/tree/master/res/3.png ) | Left, Right           |
    | 4    | ![](https://github.com/msingh017/SRI-N-CODING/tree/master/res/4.png ) | Up, Right             |
