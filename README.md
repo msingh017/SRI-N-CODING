@@ -32,7 +32,7 @@ ____
    | 4    | ![](https://github.com/msingh017/SRI-N-CODING/raw/master/res/4.png ) | Up, Right             |
    | 5    | ![](https://github.com/msingh017/SRI-N-CODING/raw/master/res/5.png ) | Down, Right           |
    | 6    | ![](https://github.com/msingh017/SRI-N-CODING/raw/master/res/6.png ) | Down, Left            |
-   | 7    | ![](https://github.com/msingh017/SRI-N-CODING/tree/master/res/7.png ) | Up, Left              |
+   | 7    | ![](https://github.com/msingh017/SRI-N-CODING/raw/master/res/7.png ) | Up, Left              |
 
    When the map of the groundwater pipe, the location where the endoscope to out in, and the length of the endoscope is given, calculate the number of the pipe which are available to explore. Length of endoscope means the range up to which endoscope can explore.
      #### Input
