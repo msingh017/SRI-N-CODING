@@ -6,6 +6,8 @@
    * [Operating System](#os)
    * [Miscellaneous](#misc)
 * [References](#ref)
+* [Contact](#Contact)
+
 ____
 <b name="coding">Coding round questions</b><br/>
 #### Popular Tags
@@ -508,5 +510,15 @@ need to find fastest 3 horses. What is the minimum number of races do you requir
  What is the minimum number of times you need to switch the torch to find out 2 working batteries? 
 - How to prevent multiple object instantiations of a class ?
 - Explain the math behind gradient descent ?
+
+
+<b name="ref">References</b>
+<br/>
+<i><u name="reff"> None :-p </u></i>
+
+<b name="Contact">Murli M Singh</b>
+<br/>
+<i><u name="Murli">Murli Manohar Singh</u>
+</i>
 
 ## Feel free to show your love :heart: by putting a star :star: on this project :v: .
