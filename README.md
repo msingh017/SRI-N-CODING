@@ -518,7 +518,7 @@ need to find fastest 3 horses. What is the minimum number of races do you requir
 
 <b name="Contact">Murli M Singh</b>
 <br/>
-<i><u name="Murli">Murli Manohar Singh</u>
+<i><u name="Murli">Murli Manohar Singh :heart </u>
 </i>
 
-## Feel free to show your love :heart: by putting a star :star: on this project :v: .
+## Please do :star: on this project :v: .
